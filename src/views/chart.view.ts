@@ -2,12 +2,13 @@ import { Chart, ChartItem } from '../models/chart.model';
 
 export class ChartView {
   protected root: HTMLElement | null;
+  protected chart: Chart;
 
   constructor(chartRootSelector: string) {
     this.root = document.getElementById(chartRootSelector);
 
     // render init chart
-    let chart: Chart = {
+    this.chart = {
       itemList: [
         { label: '1', size: 20 },
         { label: '2', size: 30 },
@@ -17,7 +18,7 @@ export class ChartView {
         { label: '6', size: 50 },
       ],
     };
-    this.renderChart(chart);
+    this.renderChart(this.chart);
 
     // render button
     let sortButton = <HTMLButtonElement>document.createElement('button');
@@ -25,8 +26,8 @@ export class ChartView {
     sortButton.addEventListener('click', () => {
       console.log('sort');
 
-      const n = chart.itemList.length;
-      let arr = chart.itemList;
+      const n = this.chart.itemList.length;
+      let arr = this.chart.itemList;
       let i, j;
       for (i = 0; i < n - 1; i++) {
         for (j = 0; j < n - i - 1; j++) {
@@ -34,8 +35,9 @@ export class ChartView {
             this.swap(arr, j, j + 1);
             console.log(arr);
 
-            this.renderChart(chart);
-            console.log(chart);
+            this.renderChart(this.chart);
+            console.log(this.chart);
+            return;
           }
         }
       }

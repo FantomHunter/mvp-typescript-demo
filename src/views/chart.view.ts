@@ -10,7 +10,7 @@ export class ChartView {
     // render init chart
     this.chart = {
       itemList: [
-        { label: '1', size: 20 },
+        { label: '1', size: 90 },
         { label: '2', size: 30 },
         { label: '3', size: 80 },
         { label: '4', size: 50 },

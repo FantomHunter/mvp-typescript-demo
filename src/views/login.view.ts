@@ -30,6 +30,21 @@ export class LoginView implements ILoginViewActions {
     });
 
     this.root?.append(input, statusText, submitButton);
+    const beer = {
+      name: 'Belgian Wit',
+      brewery: `Steam Whistle Brewery`,
+      keywords: ['pale', 'cloudy', 'spiced', 'crisp'],
+    };
+
+    let htmlTemplate = `
+      <div class="beer">
+        <h2>${beer.name}</h2>
+        <p class="brewery">${beer.brewery}
+      </div>
+    `;
+    let template = <HTMLHeadingElement>this.createElement('div');
+    template.innerHTML = htmlTemplate;
+    this.root?.append(template);
   }
 
   loginSuccess(): void {

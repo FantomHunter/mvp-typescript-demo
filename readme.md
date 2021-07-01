@@ -14,3 +14,6 @@ add to package.json
     "build": "parcel build index.html"
   },
 ````
+
+## chart template:
+[CodePen: Simple Vertical Bar Graph](https://codepen.io/trunksbomb/pen/vLYaQV)

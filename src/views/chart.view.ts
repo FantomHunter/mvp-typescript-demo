@@ -1,8 +1,11 @@
-import { ChartPresenter, IChartPresenter } from './../presenters/chart.presenter';
+import {
+  ChartPresenter,
+  IChartPresenter,
+} from './../presenters/chart.presenter';
 import { Chart, ChartItem } from '../models/chart.model';
 
 export interface IChartView {
-  renderChart(chart: Chart):void;
+  renderChart(chart: Chart): void;
 }
 export class ChartView implements IChartView {
   protected root: HTMLElement | null;
@@ -25,19 +28,43 @@ export class ChartView implements IChartView {
       ],
     };
     this.renderChart(chart);
+    let generateButton = <HTMLButtonElement>(
+      document.getElementById('generateButton')
+    );
+    generateButton.addEventListener('click', () => {
+      let bar1Input = <HTMLInputElement>document.getElementById('bar1');
+      let bar2Input = <HTMLInputElement>document.getElementById('bar2');
+      let bar3Input = <HTMLInputElement>document.getElementById('bar3');
+      let bar4Input = <HTMLInputElement>document.getElementById('bar4');
+      let bar5Input = <HTMLInputElement>document.getElementById('bar5');
+      let bar6Input = <HTMLInputElement>document.getElementById('bar6');
+
+      chart = {
+        itemList: [
+          { label: '1', size: +bar1Input.value },
+          { label: '2', size: +bar2Input.value },
+          { label: '3', size: +bar3Input.value },
+          { label: '4', size: +bar4Input.value },
+          { label: '5', size: +bar5Input.value },
+          { label: '6', size: +bar6Input.value },
+        ],
+      };
+      this.renderChart(chart);
+    });
 
     // render button
     let sortButton = <HTMLButtonElement>document.createElement('button');
     sortButton.textContent = 'Sort';
     sortButton.addEventListener('click', () => {
-      this.presenter.sort(chart)
+      this.presenter.sort(chart);
     });
     document.getElementById('panel')?.append(sortButton);
   }
 
   renderChart(chart: Chart) {
     console.log('render chart', chart);
-    if (this.root) this.root.innerHTML = '<div class="barcontainerheader">Bar Graph</div>';
+    if (this.root)
+      this.root.innerHTML = '<div class="barcontainerheader">Bar Graph</div>';
 
     chart.itemList.forEach((item) => {
       let htmlTemplate = `

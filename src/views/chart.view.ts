@@ -32,7 +32,7 @@ export class ChartView implements IChartView {
     sortButton.addEventListener('click', () => {
       this.presenter.sort(chart)
     });
-    document.getElementById('root')?.append(sortButton);
+    document.getElementById('panel')?.append(sortButton);
   }
 
   renderChart(chart: Chart) {

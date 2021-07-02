@@ -1,14 +1,20 @@
+import { ChartPresenter, IChartPresenter } from './../presenters/chart.presenter';
 import { Chart, ChartItem } from '../models/chart.model';
 
-export class ChartView {
+export interface IChartView {
+  renderChart(chart: Chart):void;
+}
+export class ChartView implements IChartView {
   protected root: HTMLElement | null;
-  protected chart: Chart;
+  protected presenter: IChartPresenter;
 
   constructor(chartRootSelector: string) {
+    this.presenter = new ChartPresenter(this);
+
     this.root = document.getElementById(chartRootSelector);
 
     // render init chart
-    this.chart = {
+    let chart = {
       itemList: [
         { label: '1', size: 90 },
         { label: '2', size: 30 },
@@ -18,34 +24,18 @@ export class ChartView {
         { label: '6', size: 50 },
       ],
     };
-    this.renderChart(this.chart);
+    this.renderChart(chart);
 
     // render button
     let sortButton = <HTMLButtonElement>document.createElement('button');
     sortButton.textContent = 'Sort';
     sortButton.addEventListener('click', () => {
-      console.log('sort');
-
-      const n = this.chart.itemList.length;
-      let arr = this.chart.itemList;
-      let i, j;
-      for (i = 0; i < n - 1; i++) {
-        for (j = 0; j < n - i - 1; j++) {
-          if (arr[j].size > arr[j + 1].size) {
-            this.swap(arr, j, j + 1);
-            console.log(arr);
-
-            this.renderChart(this.chart);
-            console.log(this.chart);
-            return;
-          }
-        }
-      }
+      this.presenter.sort(chart)
     });
     document.getElementById('root')?.append(sortButton);
   }
 
-  private renderChart(chart: Chart) {
+  renderChart(chart: Chart) {
     console.log('render chart', chart);
     if (this.root) this.root.innerHTML = '<div class="barcontainerheader">Bar Graph</div>';
 
@@ -68,11 +58,5 @@ export class ChartView {
     div.innerHTML = htmlString.trim();
     // Change this to div.childNodes to support multiple top-level nodes
     return div.firstChild;
-  }
-
-  swap(arr: ChartItem[], xp: number, yp: number) {
-    var temp = arr[xp];
-    arr[xp] = arr[yp];
-    arr[yp] = temp;
   }
 }

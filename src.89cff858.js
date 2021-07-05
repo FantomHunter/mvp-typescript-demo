@@ -465,4 +465,4 @@ var t,e,n=module.exports={};function r(){throw new Error("setTimeout has not bee
 },{"../presenters/login.presenter":"h7QL"}],"B6dB":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("./views/chart.view"),r=require("./views/login.view");console.log("Hello from typescript parcel");var i=new r.LoginView("root"),o=new e.ChartView("barcontainer");
 },{"./views/chart.view":"ztVF","./views/login.view":"oMpY"}]},{},["B6dB"], null)
-//# sourceMappingURL=mvp-typescript-demo/src.89cff858.js.map
+//# sourceMappingURL=/mvp-typescript-demo/src.89cff858.js.map

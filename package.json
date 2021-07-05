@@ -1,5 +1,5 @@
 {
-  "homepage": "https://fantomhunter.github.io/mvp-typescript-demo",
+  "homepage": "http://fantomhunter.github.io/mvp-typescript-demo",
   "name": "mvp-typescript-demo",
   "version": "1.0.0",
   "description": "",
@@ -8,7 +8,7 @@
     "dev": "parcel index.html",
     "build": "parcel build index.html",
     "predeploy": "npm run build",
-"deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
